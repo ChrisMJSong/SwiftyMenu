@@ -328,6 +328,7 @@ extension SwiftyMenu: UITableViewDelegate {
                 }
             }
         }
+        state = .hidden
     }
 }
 
