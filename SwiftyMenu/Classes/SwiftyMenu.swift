@@ -130,6 +130,9 @@ final public class SwiftyMenu: UIView {
     /// Determine `SwiftyMenu` item text color.
     @IBInspectable public var itemTextColor: UIColor = UIColor(red: 74.0/255.0, green: 74.0/255.0, blue: 74.0/255.0, alpha: 1.0)
     
+    /// Determine `SwiftyMenu` selected item text color.
+    @IBInspectable public var selectedItemTextColor: UIColor = UIColor(red: 34.0/255.0, green: 34.0/255.0, blue: 34.0/255.0, alpha: 1.0)
+    
     /// Determine `SwiftyMenu` placeholder text color.
     @IBInspectable public var placeHolderColor: UIColor = UIColor(red: 149.0/255.0, green: 149.0/255.0, blue: 149.0/255.0, alpha: 1.0) {
         didSet {
@@ -262,20 +265,18 @@ extension SwiftyMenu: UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: "OptionCell", for: indexPath)
             cell.textLabel?.text = items[indexPath.row].displayableValue
             cell.textLabel?.textColor = itemTextColor
-            cell.textLabel?.font = UIFont.systemFont(ofSize: 12)
+            cell.textLabel?.font = UIFont.systemFont(ofSize: 14)
             cell.tintColor = itemTextColor
-            cell.backgroundColor = rowBackgroundColor
-            cell.accessoryType = selectedIndecis[indexPath.row] != nil ? .checkmark : .none
+            cell.backgroundColor = (selectedIndecis[indexPath.row] != nil) ? selectedRowColor : rowBackgroundColor
             cell.selectionStyle = .none
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "OptionCell", for: indexPath)
             cell.textLabel?.text = items[indexPath.row].displayableValue
             cell.textLabel?.textColor = itemTextColor
-            cell.textLabel?.font = UIFont.systemFont(ofSize: 12)
+            cell.textLabel?.font = UIFont.systemFont(ofSize: 14)
             cell.tintColor = itemTextColor
-            cell.backgroundColor = rowBackgroundColor
-            cell.accessoryType = indexPath.row == selectedIndex ? .checkmark : .none
+            cell.backgroundColor = (indexPath.row == selectedIndex) ? selectedRowColor : rowBackgroundColor
             cell.selectionStyle = .none
             return cell
         }
@@ -450,7 +451,7 @@ extension SwiftyMenu {
             selectButton.setTitle(selectedTitle, for: .normal)
             selectButton.layoutIfNeeded()
         }
-        selectButton.setTitleColor(itemTextColor, for: .normal)
+        selectButton.setTitleColor(selectedItemTextColor, for: .normal)
     }
     
     private func setSingleSelectedOption() {
@@ -458,7 +459,7 @@ extension SwiftyMenu {
             selectButton.setTitle(items[selectedIndex!].displayableValue, for: .normal)
             selectButton.layoutIfNeeded()
         }
-        selectButton.setTitleColor(itemTextColor, for: .normal)
+        selectButton.setTitleColor(selectedItemTextColor, for: .normal)
     }
     
     private func setPlaceholder() {
