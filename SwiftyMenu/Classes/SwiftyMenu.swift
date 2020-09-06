@@ -384,10 +384,9 @@ extension SwiftyMenu {
         selectButton.backgroundColor = menuHeaderBackgroundColor
         
         let frameworkBundle = Bundle(for: SwiftyMenu.self)
-        let image = UIImage(named: "downArrow", in: frameworkBundle, compatibleWith: nil)
-        arrow = image
-        
         if arrow == nil {
+            let image = UIImage(named: "downArrow", in: frameworkBundle, compatibleWith: nil)
+            arrow = image
             selectButton.titleEdgeInsets.left = 16
         }
         
