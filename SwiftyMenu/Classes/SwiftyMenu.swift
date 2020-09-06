@@ -250,6 +250,9 @@ final public class SwiftyMenu: UIView {
         handleMenuState()
     }
     
+    public func title() -> String? {
+        selectButton.title(for: .normal)
+    }
 }
 
 // MARK: - UITableViewDataSource Functions
@@ -373,7 +376,7 @@ extension SwiftyMenu {
             selectButton.setTitle(placeHolderText, for: .normal)
             selectButton.layoutIfNeeded()
         }
-        selectButton.titleLabel?.font = UIFont.systemFont(ofSize: 12)
+        selectButton.titleLabel?.font = UIFont.systemFont(ofSize: 14)
         if UIView.userInterfaceLayoutDirection(for: selectButton.semanticContentAttribute) == .rightToLeft {
             selectButton.imageEdgeInsets.right = width - 16
             selectButton.titleEdgeInsets.left = 32
